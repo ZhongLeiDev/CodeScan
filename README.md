@@ -29,3 +29,7 @@
 ![image](https://github.com/ZhongLeiDev/ZhongLeiDev.github.io/blob/master/scanimg/f.PNG)
 ![image](https://github.com/ZhongLeiDev/ZhongLeiDev.github.io/blob/master/scanimg/g.PNG)
 
+#版本说明：
+
+v1.1为仅支持内网访问的版本
+v1.2为支持外网访问的版本

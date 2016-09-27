@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">条码扫描</string>
+    <string name="action_settings">设置</string>
+    <string name="action_1d">一维头设置</string>
+    <string name="action_reset">恢复出厂设置</string>
+    <string name="action_reset_desc">恢复所有设置到出厂状态，清除用户设置参数</string>
+    <string name="action_datatype">设置数据格式</string>
+    <string name="action_datatype_desc">将数据格式设置为：条码数据+回车换行,便于数据解析</string>
+    <string name="action_encodingtype">编码类型</string>
+    <string name="action_encodingtype_desc">设置二维码解码编码方式</string>
+    <string name="action_encoding_tip">请选择编码类型</string>
+    <string name="action_setsuccess">设置成功</string>
+    <string name="action_2d">二维头设置</string>
+    <string name="exit">退出</string>
+    <string name="open_scan">打开扫描</string>
+    <string name="empty">清空</string>
+    <string name="popup_title">请选择</string>
+    <string name="popup_message">设备退出,你要退出此应用程序吗?</string>
+    <string name="popup_yes">确定</string>
+    <string name="popup_no">取消</string>
+
+</resources>

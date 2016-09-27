@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv1"
+    android:background="@drawable/bga"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textColor="#000000"
+                 android:layout_marginTop="3dp"
+                 android:textSize="18sp"
+                 android:text="@string/memberlist" />
+             
+             <View android:layout_width="match_parent"
+                 android:layout_height="0.5dp"
+                 android:background="#999999"/>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" 
+                 android:layout_marginTop="3dp"
+                 android:orientation="horizontal">
+                 
+                  <TextView
+                     android:id="@+id/tvshowmembers"
+                     android:layout_width="0dp"
+                     android:layout_height="160dp"
+                     android:layout_weight="2"
+                     android:maxLines="10"
+                     android:scrollbars="vertical"
+                     android:singleLine="false"
+                     android:text="@string/blank"
+                     android:textColor="#000000"
+                     android:textSize="15sp" />
+                 
+
+                 <TextView
+                     android:id="@+id/tvlock"
+                     android:layout_width="0dp"
+                     android:layout_height="80dp"
+                     android:layout_weight="1"
+                     android:text="@string/blank"
+                     android:layout_gravity="center"
+                     android:background="@drawable/unlock"/>            
+                
+             </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal" >
+
+       <Button
+           android:id="@+id/btndeletemember"
+           android:layout_width="0dp"
+           android:layout_height="35dp"
+           android:layout_weight="1"
+           android:text="@string/deletemember" 
+           android:background="@drawable/btn_bg"
+           android:layout_marginStart="2dp"
+           android:layout_marginLeft="2dp"
+           android:layout_marginEnd="1dp"
+           android:layout_marginRight="1dp"
+           style="?android:attr/buttonBarButtonStyle"/>
+
+       <Button
+           android:id="@+id/btnclearmember"
+           android:layout_width="0dp"
+           android:layout_height="35dp"
+           android:layout_weight="1"
+           android:text="@string/clearmember" 
+           android:background="@drawable/btn_bg"
+           android:layout_marginStart="1dp"
+           android:layout_marginLeft="1dp"
+           android:layout_marginEnd="1dp"
+           android:layout_marginRight="1dp"
+           style="?android:attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/btnaddmember"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="@string/addmember" 
+            android:background="@drawable/btn_bg"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            style="?android:attr/buttonBarButtonStyle"/>
+       
+    </LinearLayout>
+    
+   <View android:layout_width="match_parent"
+       	 android:layout_height="0.6dp"
+       	 android:layout_marginTop="3dp"
+       	 android:background="#dddddd"/>
+    
+
+</LinearLayout>

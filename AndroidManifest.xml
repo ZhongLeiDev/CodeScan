@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zkc.barcodescan"
+    android:versionCode="1"
+    android:versionName="1.6.5.13" >
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
+
+
+    <uses-permission android:name="android.permission.INJECT_EVENT" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
+    </uses-permission>
+
+    <uses-permission android:name="android.permission.VIBRATE" /> 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" /> 
+ 
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/show_name" >
+
+        <!-- 按键广播 -->
+        <receiver
+            android:name="com.zkc.Receiver.RemoteControlReceiver"
+            android:permission="com.zkc.keycode" >
+            <intent-filter>
+                <intent-filter android:priority="1000" />
+
+                <action android:name="com.zkc.keycode" />
+            </intent-filter>
+        </receiver> 
+        <!-- 广播接收 -->
+          <receiver android:name="com.zkc.Receiver.StartReceiver" >
+            <intent-filter android:priority="996" />
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>   
+        <!-- 扫描服务 -->
+        <service android:name="com.zkc.Service.CaptureService" >
+            <intent-filter>
+                <action android:name="com.zkc.Service.CaptureService" />
+            </intent-filter>
+        </service> 
+        <activity
+            android:name="com.zkc.barcodescan.activity.MainActivity"
+            android:label="@string/show_name"
+            android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="BarCodeScan" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="info" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zkc.barcodescan.activity.ActivityBarcodeSetting"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+        <activity
+            android:name="com.zkc.barcodescan.activity.ActivityQrcodeSetting"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+        <activity
+            android:name="com.zkc.barcodescan.activity.DialogEncodingActivity"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+        <activity
+            android:name="com.zl.dbmail.DatabaseHandle"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+        <activity
+            android:name="com.zl.dbmail.ConfigActivity"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+        <activity
+            android:name="com.zl.dbmail.BatchHandle"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+    </application>
+
+</manifest>

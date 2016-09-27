@@ -5,4 +5,6 @@
 
 #使用说明：
 
+整体界面分布：
 
+![image](https://github.com/ZhongLeiDev/ZhongLeiDev.github.io/raw/master/scanimg/a.png)

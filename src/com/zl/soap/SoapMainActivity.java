@@ -104,7 +104,7 @@ public class SoapMainActivity extends Activity {
 	private boolean IS_ALLLOCKED = false;//全局锁定标志位
 	
 	private Map<String,String> scanresultmap = new HashMap<String,String>();//通过外网连接WebService所查询得到的结果
-	private DBUtils dbUtils = new DBUtils();
+	private DBUtils dbUtils;
 	
 	@SuppressLint("HandlerLeak") 
 	private Handler mainhandler = new Handler(){
@@ -309,6 +309,8 @@ public class SoapMainActivity extends Activity {
 		setContentView(R.layout.new_layout);
 		
 		LogcatFileManager.getInstance().startLogcatManager(this);//开启LogcatFileManager保存错误信息
+		
+		dbUtils = DBUtils.getInstance();//以单例模式初始化dbUtils
 		
 		//--------------------------等待框---------------------------
 		mydialog = new ProgressDialog(this);

@@ -14,6 +14,18 @@ public class DBUtils {
 	private ArrayList<String> crrayList = new ArrayList<String>();
 	private HttpConnSoap Soap = new HttpConnSoap();
 	private Map<String,String> rebuild = new HashMap<String,String>();
+	private static DBUtils dbu;
+	
+	/**
+	 * 获取DBUtils单例
+	 * @return
+	 */
+	public static DBUtils getInstance(){
+		if(dbu == null){
+			dbu = new DBUtils();
+		}
+		return dbu;
+	}
 
 	public static Connection getConnection() {
 		Connection con = null;
@@ -94,6 +106,33 @@ public class DBUtils {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * 根据批次号批次撤销操作
+	 * @param batch 批次号
+	 * @return 撤销操作是否成功
+	 */
+	public boolean setDefaultOutbondState(String batch){
+		boolean res = false;
+		
+		arrayList.clear();
+		brrayList.clear();
+		rebuild.clear();
+		
+		arrayList.add("batch");
+		brrayList.add(batch);
+		
+		rebuild = Soap.GetWebServre("setDefaultOutbondState", arrayList, brrayList);
+		
+		if((rebuild.get("KEY")).equals("OK")){
+			res = true;
+		}else if((rebuild.get("KEY")).equals("NG")){
+			Log.i("setDefaultOutbondState", "setdata failed!");
+		}
+		
+		return res;
+		
 	}
 
 	/**

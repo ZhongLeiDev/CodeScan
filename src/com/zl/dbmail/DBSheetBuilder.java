@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -73,7 +74,7 @@ public class DBSheetBuilder {
 	
 	/**
 	 * 本地数据库存储操作，不需要进行本地Excel操作
-	 * @param rs 远程数据库查询到的结果
+	 * @param rs 直连数据库查询到的结果
 	 * @param batch 批次信息
 	 * @return 是否存储成功
 	 */
@@ -113,6 +114,46 @@ public class DBSheetBuilder {
 			e.printStackTrace();
 			result = false;
 		}
+		return result;
+	}
+	
+	/**
+	 * 将外网通过WebService查询到的结果存储到本地数据库
+	 * @param map 查询到的结果
+	 * @param batch 批次号
+	 * @return
+	 */
+	public boolean saveDataWithBatch_Map(Map<String,String> map,String batch){
+		boolean result = false;
+		ContentValues values = new ContentValues();
+		values.put("Outbound_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.CHINA).format(new Date()));
+		values.put("SERIAL_NUMBER", map.get("SERIAL_NUMBER").replace(" ", ""));//清除空格;
+		values.put("MO_NUMBER", map.get("MO_NUMBER").replace(" ", ""));
+		values.put("MODEL_NAME", map.get("MODEL_NAME").replace(" ", ""));
+		values.put("LAN_MAC", map.get("LAN_MAC").replace(" ", ""));
+		if(map.get("BT_MAC")==null){
+			values.put("BT_MAC","0");
+		}else{
+		values.put("BT_MAC",map.get("BT_MAC").replace(" ", ""));
+		}
+		values.put("Broadcast_CN", map.get("BRAODCAST_CN").replace(" ", ""));
+		values.put("WIFI_MAC", map.get("WIFI_MAC").replace(" ", ""));
+		values.put("Test_Time", map.get("TEST_TIME").replace(" ", ""));
+		values.put("HDCP_Key14", map.get("HDCP_KEY14").replace(" ", ""));
+		values.put("HDCP_Key20", map.get("HDCP_KEY20").replace(" ", ""));
+		values.put("batch", batch);//写入批次号
+		Cursor mCrusor = mDbHelper.exeSql("select * from family_bill where SERIAL_NUMBER = '"+map.get("SERIAL_NUMBER").replace(" ", "")+"'");
+		if(mCrusor.getCount()==0){//如果查询结果为空，即数据库内还未插入此条信息时插入，避免重复插入
+		long insert = mDbHelper.insert("family_bill", values);
+		if(insert>0){
+//			result = saveDataToExcelFroomDB(rs,filename);
+			result = true;//本地数据库操作时不需要进行Excel本地存储
+		}
+		}else{
+			Log.i("INSERTDATA", "数据库中已存在此条记录！");
+			result = true;
+		}
+		mCrusor.close();
 		return result;
 	}
 	

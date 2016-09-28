@@ -5,7 +5,7 @@
     android:versionName="1.6.5.13" >
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="24" />
 
 
     <uses-permission android:name="android.permission.INJECT_EVENT" >
@@ -28,7 +28,7 @@
 
         <!-- 按键广播 -->
         <receiver
-            android:name="com.zkc.Receiver.RemoteControlReceiver"
+            android:name="com$zkc$Receiver$RemoteControlReceiver"
             android:permission="com.zkc.keycode" >
             <intent-filter>
                 <intent-filter android:priority="1000" />
@@ -37,7 +37,7 @@
             </intent-filter>
         </receiver> 
         <!-- 广播接收 -->
-          <receiver android:name="com.zkc.Receiver.StartReceiver" >
+          <receiver android:name="com$zkc$Receiver$StartReceiver" >
             <intent-filter android:priority="996" />
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -46,13 +46,13 @@
             </intent-filter>
         </receiver>   
         <!-- 扫描服务 -->
-        <service android:name="com.zkc.Service.CaptureService" >
+        <service android:name="com$zkc$Service$CaptureService" >
             <intent-filter>
                 <action android:name="com.zkc.Service.CaptureService" />
             </intent-filter>
         </service> 
         <activity
-            android:name="com.zkc.barcodescan.activity.MainActivity"
+            android:name="com.zl.soap.SoapMainActivity"
             android:label="@string/show_name"
             android:screenOrientation="locked">
             <intent-filter>
@@ -84,7 +84,7 @@
             android:screenOrientation="locked" >
         </activity>
         <activity
-            android:name="com.zl.dbmail.DatabaseHandle"
+            android:name="com.zl.dbmail.DatabaseHandleActivity"
             android:label="@string/show_name" 
             android:screenOrientation="locked" >
         </activity>
@@ -94,7 +94,7 @@
             android:screenOrientation="locked" >
         </activity>
         <activity
-            android:name="com.zl.dbmail.BatchHandle"
+            android:name="com.zl.dbmail.BatchHandleActivity"
             android:label="@string/show_name" 
             android:screenOrientation="locked" >
         </activity>

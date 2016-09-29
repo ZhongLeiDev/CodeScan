@@ -13,12 +13,11 @@ public class HttpConnSoap {
 	public Map<String,String> GetWebServre(String methodName, ArrayList<String> Parameters, ArrayList<String> ParValues) {
 		Map<String,String> Values = new HashMap<String,String>();
 		
-		//ServerUrlÊÇÖ¸webserviceµÄurl
-		//10.0.2.2ÊÇÈÃandroidÄ£ÄâÆ÷·ÃÎÊ±¾µØ£¨PC£©·şÎñÆ÷£¬²»ÄÜĞ´³É127.0.0.1
-		//4124ÊÇÖ¸¶Ë¿ÚºÅ£¬¼´¹ÒÔØµ½IISÉÏµÄÊ±ºò¿ªÆôµÄ¶Ë¿Ú
-		//Service1.asmxÊÇÖ¸Ìá¹©·şÎñµÄÒ³Ãæ
-//		String ServerUrl = "http://10.0.2.2:11125/Service1.asmx";
-		String ServerUrl = "http://cmp.tcl.com:82/cmp/DataAcquisition/Da.asmx";
+		//ServerUrlæ˜¯æŒ‡webserviceçš„url
+		//10.0.2.2æ˜¯è®©androidæ¨¡æ‹Ÿå™¨è®¿é—®æœ¬åœ°ï¼ˆPCï¼‰æœåŠ¡å™¨ï¼Œä¸èƒ½å†™æˆ127.0.0.1
+		//4124æ˜¯æŒ‡ç«¯å£å·ï¼Œå³æŒ‚è½½åˆ°IISä¸Šçš„æ—¶å€™å¼€å¯çš„ç«¯å£
+		//Service1.asmxæ˜¯æŒ‡æä¾›æœåŠ¡çš„é¡µé¢
+		String ServerUrl = "http://10.0.2.2:11125/Service1.asmx";
 		
 		//String soapAction="http://tempuri.org/LongUserId1";
 		String soapAction = "http://tempuri.org/" + methodName;
@@ -32,7 +31,7 @@ public class HttpConnSoap {
 		mreakString = "<" + methodName + " xmlns=\"http://tempuri.org/\">";
 		for (int i = 0; i < Parameters.size(); i++) {
 			tps = Parameters.get(i).toString();
-			//ÉèÖÃ¸Ã·½·¨µÄ²ÎÊıÎª.net webServiceÖĞµÄ²ÎÊıÃû³Æ
+			//è®¾ç½®è¯¥æ–¹æ³•çš„å‚æ•°ä¸º.net webServiceä¸­çš„å‚æ•°åç§°
 			vps = ParValues.get(i).toString();
 			ts = "<" + tps + ">" + vps + "</" + tps + ">";
 			mreakString = mreakString + ts;
@@ -55,7 +54,7 @@ public class HttpConnSoap {
 			con.setDoInput(true);
 			con.setDoOutput(true);
 			con.setUseCaches(false);
-			con.setConnectTimeout(6000);// ÉèÖÃ³¬Ê±Ê±¼ä
+			con.setConnectTimeout(6000);// è®¾ç½®è¶…æ—¶æ—¶é—´
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-Type", "text/xml;charset=utf-8");
 			con.setRequestProperty("SOAPAction", soapAction);
@@ -83,25 +82,25 @@ public class HttpConnSoap {
 	}
 	
 	/**
-	 * ½«»ñÈ¡µÄÊı¾İ½øĞĞ½âÎö
-	 * @param in »ñÈ¡µÄÊäÈëÁ÷Êı¾İ
-	 * @return ·µ»ØMapÊı¾İÀàĞÍ£¬µ±Êı¾İ½âÎöÖµÎª×´Ì¬Öµ£¨OK/NG£©»òÊıÁ¿Ê±£¬·µ»ØMap<"KEY",result>,result¼´Îª·µ»ØµÄ×´Ì¬»òÊıÁ¿
+	 * å°†è·å–çš„æ•°æ®è¿›è¡Œè§£æ
+	 * @param in è·å–çš„è¾“å…¥æµæ•°æ®
+	 * @return è¿”å›Mapæ•°æ®ç±»å‹ï¼Œå½“æ•°æ®è§£æå€¼ä¸ºçŠ¶æ€å€¼ï¼ˆOK/NGï¼‰æˆ–æ•°é‡æ—¶ï¼Œè¿”å›Map<"KEY",result>,resultå³ä¸ºè¿”å›çš„çŠ¶æ€æˆ–æ•°é‡
 	 */
 	public Map<String,String> inputStream2List(InputStream in)throws IOException{
 		Map<String,String> Values = new HashMap<String,String>();
 		Values.clear();
 		StringBuffer out = new StringBuffer();
 		String s1 = "";
-		byte[] b = new byte[4096];//×î´óÖ§³ÖµÄÊı¾İ¿éÎª4M£¨ÔÚ´ËÀıÖĞ£©£¬Èç¹û´óÓÚ4MµÄ»°ĞèÒª¶Ô"out"½øĞĞ·ÖÎö¶ø²»ÊÇ"s1"
+		byte[] b = new byte[4096];//æœ€å¤§æ”¯æŒçš„æ•°æ®å—ä¸º4Mï¼ˆåœ¨æ­¤ä¾‹ä¸­ï¼‰ï¼Œå¦‚æœå¤§äº4Mçš„è¯éœ€è¦å¯¹"out"è¿›è¡Œåˆ†æè€Œä¸æ˜¯"s1"
 		for (int n; (n = in.read(b)) != -1;) {
 			s1 = new String(b, 0, n);
 			out.append(s1);
 		}
-		String[ ] params = s1.split("<");//ÒÔ¡°<¡°Îª±êÖ¾Î»(XMLÎÄ¼ş)²ğ·Ö£¬±êÖ¾ÒªÒÔ»ñµÃµÄÊäÈëÁ÷À´¾ö¶¨
+		String[ ] params = s1.split("<");//ä»¥â€œ<â€œä¸ºæ ‡å¿—ä½(XMLæ–‡ä»¶)æ‹†åˆ†ï¼Œæ ‡å¿—è¦ä»¥è·å¾—çš„è¾“å…¥æµæ¥å†³å®š
 		String temp;
 		if(params.length>0){
 			String[ ] build = params[0].split(";");
-			if(build.length>1){//µ±·µ»Ø×Ö·û´®Îª×´Ì¬Öµ£¨OK»òNG£©»òÊıÁ¿Ê±£¬build[ ]Êı×é³¤¶ÈÎª1,ÔÙÏòÏÂ×öÅĞ¶Ï
+			if(build.length>1){//å½“è¿”å›å­—ç¬¦ä¸²ä¸ºçŠ¶æ€å€¼ï¼ˆOKæˆ–NGï¼‰æˆ–æ•°é‡æ—¶ï¼Œbuild[ ]æ•°ç»„é•¿åº¦ä¸º1,å†å‘ä¸‹åšåˆ¤æ–­
 			for(int i=0;i<build.length;i++){
 				temp = build[i].split(":")[0];
 				Values.put(temp, build[i].replace(temp+":", ""));
@@ -155,7 +154,7 @@ public class HttpConnSoap {
 					vs = TS.substring(j + l, k - 2);
 					//System.out.println("fff"+vs);
 					Values.add(vs);
-					System.out.println("ÍË³ö" + vs);
+					System.out.println("é€€å‡º" + vs);
 					getValueBoolean = false;
 					return Values;
 				}

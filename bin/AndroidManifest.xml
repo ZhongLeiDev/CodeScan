@@ -22,6 +22,7 @@
  
 
     <application
+        android:name="com.zl.activity.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/show_name" >
@@ -52,7 +53,7 @@
             </intent-filter>
         </service> 
         <activity
-            android:name="com.zl.soap.SoapMainActivity"
+            android:name="com.zl.activity.MainMenuActivity"
             android:label="@string/show_name"
             android:screenOrientation="locked">
             <intent-filter>
@@ -67,6 +68,16 @@
 
                 <data android:scheme="info" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zl.activity.JdtMainActivity"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+         <activity
+            android:name="com.zl.activity.SoapMainActivity"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
         </activity>
         <activity
             android:name="com.zkc.barcodescan.activity.ActivityBarcodeSetting"
@@ -85,6 +96,11 @@
         </activity>
         <activity
             android:name="com.zl.dbmail.DatabaseHandleActivity"
+            android:label="@string/show_name" 
+            android:screenOrientation="locked" >
+        </activity>
+        <activity
+            android:name="com.zl.dbmail.DatabaseHandleSoapActivity"
             android:label="@string/show_name" 
             android:screenOrientation="locked" >
         </activity>

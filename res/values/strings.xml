@@ -68,5 +68,7 @@
     <string name="btnrevocation">撤销</string>
     <string name="input">手动输入</string>
     <string name="unlock">解除锁定</string>
+    <string name="jdtquery">内网扫描模式</string>
+    <string name="soapquery">外网扫描模式</string>
 
 </resources>

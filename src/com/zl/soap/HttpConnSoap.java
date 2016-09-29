@@ -17,8 +17,8 @@ public class HttpConnSoap {
 		//10.0.2.2是让android模拟器访问本地（PC）服务器，不能写成127.0.0.1
 		//4124是指端口号，即挂载到IIS上的时候开启的端口
 		//Service1.asmx是指提供服务的页面
-//		String ServerUrl = "http://10.0.2.2:11125/Service1.asmx";
-		String ServerUrl = "http://cmp.tcl.com:82/cmp/DataAcquisition/Da.asmx";
+		String ServerUrl = "http://10.0.2.2:11125/Service1.asmx";
+		
 		
 		//String soapAction="http://tempuri.org/LongUserId1";
 		String soapAction = "http://tempuri.org/" + methodName;

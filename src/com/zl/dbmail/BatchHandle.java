@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.zkc.barcodescan.R;
-import com.zkc.barcodescan.activity.MainActivity;
+import com.zl.activity.JdtMainActivity;
 import com.zl.showlist.BatchResult;
 import com.zl.showlist.BatchResultAdapter;
 import android.app.Activity;
@@ -119,7 +119,7 @@ private void showRebuildDialog(){
 	                	String batchname = edtbatch.getText().toString();
 	                	String batchsum = edtsum.getText().toString();
 	                	
-	                	if((!batchname.isEmpty())&&(MainActivity.isNumber(batchsum))&&(Integer.parseInt(batchsum)>0)&&(!batchname.equals("EMPTY"))&&(!batchname.equals("NO"))){
+	                	if((!batchname.isEmpty())&&(JdtMainActivity.isNumber(batchsum))&&(Integer.parseInt(batchsum)>0)&&(!batchname.equals("EMPTY"))&&(!batchname.equals("NO"))){
 	                	
 	                		if(batchdbhelper.updateSum(batchname, batchsum)>0){
 	                			new Thread(showRunnable).start();

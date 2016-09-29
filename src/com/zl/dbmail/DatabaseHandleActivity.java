@@ -15,7 +15,6 @@ import net.sourceforge.jtds.jdbc.JtdsStatement;
 import com.zkc.barcodescan.R;
 import com.zl.showlist.QueryResult;
 import com.zl.showlist.QueryResultAdapter;
-import com.zl.soap.DBUtils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -64,8 +63,6 @@ public class DatabaseHandleActivity extends Activity{
 	private BatchDBSheetBuilder batchbuilder;
 	private String[ ] batchunlock = new String[]{};
 	
-	private DBUtils dbu;
-	
 	@SuppressLint("HandlerLeak") 
 	private Handler mhandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -112,10 +109,6 @@ public class DatabaseHandleActivity extends Activity{
 				tvshowdetail.setText("撤销操作顺利完成！");
 				tvshowdetail.setTextColor(Color.GREEN);
 				mydialog.cancel();
-			}else if(msg.what == 0x11){
-				tvshowdetail.setText("撤销操作失败！");
-				tvshowdetail.setTextColor(Color.RED);
-				mydialog.cancel();
 			}
 		}
 	};
@@ -126,8 +119,6 @@ public class DatabaseHandleActivity extends Activity{
 		setContentView(R.layout.database_layout);
 		mDbHelper = new DBHelper(this);
 		mDbHelper.open();//打开数据库
-		
-		dbu = DBUtils.getInstance();//以单例模式初始化dbu
 		
 		batchbuilder = new BatchDBSheetBuilder(this);
 		batchunlock = batchbuilder.getBatchList();
@@ -376,72 +367,60 @@ public class DatabaseHandleActivity extends Activity{
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-//			Connection cn = null;//初始化cn为空值
-//    		boolean isConnected = false;
-//    		try {
-//				//---------------------------------使用jtds驱动-------------------------------------------------------------
-//				Class.forName("net.sourceforge.jtds.jdbc.Driver");
-//				cn = DriverManager.getConnection( "jdbc:jtds:sqlserver://10.126.8.6:1433/rm_db", "user01", "tcl123" );
-//				
-//				//连接成功时的输出提示
-//	    		Log.i("CONNECT_STATE", "服务器连接成功！");
-//	    		Message msg = Message.obtain(mhandler);
-//	    		msg.what = 0x08;//服务器连接成功
-//	    		msg.sendToTarget();
-//	    		
-//	    		isConnected = true;
-//				
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//				Message msg = Message.obtain(mhandler);
-//				msg.what = 0x09;//远程数据库连接失败
-//				msg.sendToTarget();
-//			} catch (ClassNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			Connection cn = null;//初始化cn为空值
+    		boolean isConnected = false;
+    		try {
+				//---------------------------------使用jtds驱动-------------------------------------------------------------
+				Class.forName("net.sourceforge.jtds.jdbc.Driver");
+				cn = DriverManager.getConnection( "jdbc:jtds:sqlserver://10.126.8.6:1433/rm_db", "user01", "tcl123" );
+				
+				//连接成功时的输出提示
+	    		Log.i("CONNECT_STATE", "服务器连接成功！");
+	    		Message msg = Message.obtain(mhandler);
+	    		msg.what = 0x08;//服务器连接成功
+	    		msg.sendToTarget();
+	    		
+	    		isConnected = true;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Message msg = Message.obtain(mhandler);
+				msg.what = 0x09;//远程数据库连接失败
+				msg.sendToTarget();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
-//    		if(isConnected){
-//    		String sqlupdate = "update whaley set outbound = 'NO' where  outbound = '"+batchname+"'";//更新出库标志位YES
-//    		JtdsStatement st;
-//    		
-//			try {
-//				 st=(JtdsStatement) cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);//可滚动结果集
-//				 st.executeUpdate(sqlupdate);//更新出库记录
-			
-			if(dbu.setDefaultOutbondState(batchname)){
+    		if(isConnected){
+    		String sqlupdate = "update whaley set outbound = 'NO' where  outbound = '"+batchname+"'";//更新出库标志位YES
+    		JtdsStatement st;
+    		
+			try {
+				 st=(JtdsStatement) cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);//可滚动结果集
+				 st.executeUpdate(sqlupdate);//更新出库记录
+				 
 				 mDbHelper.deleteWithBatch("family_bill", batchname);
-				 Message msg = Message.obtain(mhandler);
-				 msg.what = 0x10;//远程数据库操作成功
-				 msg.sendToTarget();
-			}else{
+				 
+					 Message msg = Message.obtain(mhandler);
+					 msg.what = 0x10;//远程数据库操作成功
+					 msg.sendToTarget();
+				
+				if(st != null){
+						st.close();
+					}if(cn != null){
+						cn.close();
+					}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				 Message msg = Message.obtain(mhandler);
 				 msg.what = 0x11;//远程数据库操作失败
 				 msg.sendToTarget();
 			}
-				 
-//				 mDbHelper.deleteWithBatch("family_bill", batchname);
-//				 
-//					 Message msg = Message.obtain(mhandler);
-//					 msg.what = 0x10;//远程数据库操作成功
-//					 msg.sendToTarget();
-				
-//				if(st != null){
-//						st.close();
-//					}if(cn != null){
-//						cn.close();
-//					}
-//			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-//				e.printStackTrace();
-					 
-//				 Message msg = Message.obtain(mhandler);
-//				 msg.what = 0x11;//远程数据库操作失败
-//				 msg.sendToTarget();
-//			}
     		
-//    		}
+    		}
 		}
 		
 	};

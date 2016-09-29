@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/com/zkc/Service/CaptureService.java=UTF-8
 encoding//src/com/zkc/barcodescan/activity/ActivityQrcodeSetting.java=UTF-8
-encoding//src/com/zkc/barcodescan/activity/MainActivity.java=UTF-8
-encoding//src/com/zl/soap/SoapMainActivity.java=UTF-8
+encoding//src/com/zl/activity/JdtMainActivity.java=UTF-8
+encoding//src/com/zl/activity/SoapMainActivity.java=UTF-8

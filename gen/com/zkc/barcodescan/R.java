@@ -43,28 +43,30 @@ public final class R {
         public static final int btnEdit=0x7f070002;
         public static final int btnOpen=0x7f070003;
         public static final int btnaddmember=0x7f070015;
-        public static final int btnback=0x7f07002d;
-        public static final int btnbatch=0x7f070021;
+        public static final int btnback=0x7f07002f;
+        public static final int btnbatch=0x7f070023;
         public static final int btnchange=0x7f07000d;
-        public static final int btnclear=0x7f07002c;
+        public static final int btnclear=0x7f07002e;
         public static final int btnclearmember=0x7f070014;
-        public static final int btncomplete=0x7f070022;
+        public static final int btncomplete=0x7f070024;
         public static final int btndeletemember=0x7f070013;
-        public static final int btnoutbound=0x7f070024;
-        public static final int btnrevocation=0x7f070025;
-        public static final int btnscan=0x7f07002b;
+        public static final int btnjdt=0x7f07001e;
+        public static final int btnoutbound=0x7f070026;
+        public static final int btnrevocation=0x7f070027;
+        public static final int btnscan=0x7f07002d;
+        public static final int btnsoap=0x7f07001f;
         public static final int clear=0x7f07001b;
-        public static final int codevalue=0x7f070020;
+        public static final int codevalue=0x7f070022;
         public static final int dbname=0x7f070016;
-        public static final int detail=0x7f070026;
+        public static final int detail=0x7f070028;
         public static final int emptyBtn=0x7f070004;
         public static final int et_code=0x7f070001;
-        public static final int imageView1=0x7f07001f;
+        public static final int imageView1=0x7f070021;
         public static final int listView1=0x7f07000c;
-        public static final int netstate=0x7f07001e;
+        public static final int netstate=0x7f070020;
         public static final int new_batch=0x7f07000e;
         public static final int query=0x7f07001a;
-        public static final int resultimg=0x7f070023;
+        public static final int resultimg=0x7f070025;
         public static final int start=0x7f070017;
         public static final int stop=0x7f070018;
         public static final int sum=0x7f07000f;
@@ -73,13 +75,13 @@ public final class R {
         public static final int textView2=0x7f070009;
         public static final int textView3=0x7f07000a;
         public static final int textView4=0x7f07000b;
-        public static final int tvbatch=0x7f070027;
-        public static final int tvbatchcountlimit=0x7f070029;
+        public static final int tvbatch=0x7f070029;
+        public static final int tvbatchcountlimit=0x7f07002b;
         public static final int tvbatchflag=0x7f070007;
         public static final int tvbatchname=0x7f070005;
         public static final int tvbatchsize=0x7f070006;
-        public static final int tvbatchsum=0x7f07002a;
-        public static final int tvcount=0x7f070028;
+        public static final int tvbatchsum=0x7f07002c;
+        public static final int tvcount=0x7f07002a;
         public static final int tvlock=0x7f070012;
         public static final int tvoutboundtime=0x7f07001c;
         public static final int tvserialnumber=0x7f07001d;
@@ -99,7 +101,8 @@ public final class R {
         public static final int config_layout=0x7f030009;
         public static final int database_layout=0x7f03000a;
         public static final int dbresult_item=0x7f03000b;
-        public static final int new_layout=0x7f03000c;
+        public static final int mainmenu_layout=0x7f03000c;
+        public static final int new_layout=0x7f03000d;
     }
     public static final class raw {
         public static final int beep=0x7f040000;
@@ -152,6 +155,7 @@ public final class R {
         public static final int hintstop=0x7f060023;
         public static final int img=0x7f060017;
         public static final int input=0x7f060041;
+        public static final int jdtquery=0x7f060043;
         public static final int localdb=0x7f06001e;
         public static final int memberlist=0x7f060030;
         public static final int newbatch=0x7f06003a;
@@ -174,6 +178,7 @@ public final class R {
         public static final int sendemail=0x7f06001b;
         public static final int show_name=0x7f060001;
         public static final int showdetail=0x7f060024;
+        public static final int soapquery=0x7f060044;
         public static final int unlock=0x7f060042;
     }
 }
